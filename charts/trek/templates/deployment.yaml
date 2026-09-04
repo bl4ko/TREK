@@ -19,6 +19,7 @@ spec:
         app: {{ include "trek.name" . }}
         {{- include "trek.selectorLabels" . | nindent 8 }}
     spec:
+      automountServiceAccountToken: false
       {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- range .Values.imagePullSecrets }}
