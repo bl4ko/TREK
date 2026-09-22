@@ -116,6 +116,8 @@ persistence:
   enabled: true
   data:
     size: 1Gi
+    claimName: ""
+    storageClassName: ""
   uploads:
     size: 1Gi
 
