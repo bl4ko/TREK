@@ -6,7 +6,7 @@ metadata:
     app: {{ include "trek.name" . }}
     {{- include "trek.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   strategy:
     type: Recreate
   selector:
@@ -116,4 +116,4 @@ spec:
             claimName: {{ default (printf "%s-data" (include "trek.fullname" .)) .Values.persistence.data.claimName }}
         - name: uploads
           persistentVolumeClaim:
-            claimName: {{ include "trek.fullname" . }}-uploads
+            claimName: {{ default (printf "%s-uploads" (include "trek.fullname" .)) .Values.persistence.uploads.claimName }}

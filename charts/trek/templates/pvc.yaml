@@ -18,12 +18,15 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "trek.fullname" . }}-uploads
+  name: {{ default (printf "%s-uploads" (include "trek.fullname" .)) .Values.persistence.uploads.claimName }}
   labels:
     app: {{ include "trek.name" . }}
 spec:
   accessModes:
     - ReadWriteOnce
+  {{- with .Values.persistence.uploads.storageClassName }}
+  storageClassName: {{ . }}
+  {{- end }}
   resources:
     requests:
       storage: {{ .Values.persistence.uploads.size }}
