@@ -1,3 +1,4 @@
+replicaCount: 1
 
 image:
   repository: mauriceboe/trek
@@ -120,6 +121,8 @@ persistence:
     storageClassName: ""
   uploads:
     size: 1Gi
+    claimName: ""
+    storageClassName: ""
 
 resources:
   requests:
